@@ -14,7 +14,6 @@ export default function NavBar() {
       </Link>
       <style jsx>{`
         .active {
-          font-weight: bold;
           color: tomato;
         }
       `}</style>
