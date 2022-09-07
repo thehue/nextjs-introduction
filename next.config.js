@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const API_KEY = process.env.API_KEY;
+const API_BASE_URL = process.env.API_BASE_URL;
+const apiKeyQuery = `?api_key=${API_KEY}`;
 
 const nextConfig = {
   reactStrictMode: true,
@@ -20,7 +22,11 @@ const nextConfig = {
     return [
       {
         source: "/api/movies",
-        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+        destination: `${API_BASE_URL}/movie/popular${apiKeyQuery}`,
+      },
+      {
+        source: "/api/movies/:id",
+        destination: `${API_BASE_URL}/movie/:id${apiKeyQuery}`,
       },
     ];
   },
