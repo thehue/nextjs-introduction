@@ -1,5 +1,4 @@
 import Seo from "../components/Seo";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,16 +7,8 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/";
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    const pathname = `/movies/${id}`;
-    router.push(
-      {
-        pathname,
-        query: {
-          title,
-        },
-      },
-      pathname
-    );
+    const pathname = `/movies/${title}/${id}`;
+    router.push(pathname);
   };
 
   return (
@@ -36,15 +27,7 @@ export default function Home({ results }) {
             height={345}
           />
           <h4>
-            <Link
-              href={{
-                pathname: `/movies/${movie.id}`,
-                query: {
-                  title: movie.original_title,
-                },
-              }}
-              as={`/movies/${movie.id}`}
-            >
+            <Link href={`/movies/${movie.original_title}/${movie.id}`}>
               <a>{movie.original_title}</a>
             </Link>
           </h4>
